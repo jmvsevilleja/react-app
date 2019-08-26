@@ -2,26 +2,31 @@ import React, { Component } from "react";
 import Counter from "./counter";
 
 class Counters extends Component {
-  state = {
-    counters: [
-      { id: 1, value: 1 },
-      { id: 2, value: 2 },
-      { id: 3, value: 3 },
-      { id: 4, value: 4 }
-    ]
-  };
-
-  handleRemove = counterId => {
-    console.log("Handle Remove", counterId);
-    const counters = this.state.counters.filter(c => c.id !== counterId);
-    this.setState({ counters });
-  };
+  // initialize properties of this class
+  constructor(props) {
+    // call constructor of the parent class
+    super(props);
+    console.log("Counters - Constructor", this.props);
+    //this.state = this.props.something;
+  }
 
   render() {
+    console.log("Counters - rendered");
+    // Object destructuring
+    const { onReset, counters, onRemove, onIncrement } = this.props;
+
     return (
       <div>
-        {this.state.counters.map(counter => (
-          <Counter key={counter.id} onRemove={this.handleRemove} prop={counter}>
+        <button onClick={onReset} className="btn btn-primary btn-sm m-2">
+          Reset
+        </button>
+        {counters.map(counter => (
+          <Counter
+            key={counter.id}
+            onRemove={onRemove}
+            onIncrement={onIncrement}
+            counter={counter}
+          >
             Counter #{counter.id}
           </Counter>
         ))}
