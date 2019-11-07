@@ -6,6 +6,15 @@ import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 import "bootstrap/dist/css/bootstrap.min.css";
 
+// CLASS
+import { Teacher } from "./modules/teacher";
+const teacher = new Teacher("Mark", "Master");
+console.log(teacher.name);
+console.log(teacher.degree);
+teacher.teach();
+teacher.walk();
+
+//COMPONENT
 ReactDOM.render(<App />, document.getElementById("root"));
 
 // If you want your app to work offline and load faster, you can change
